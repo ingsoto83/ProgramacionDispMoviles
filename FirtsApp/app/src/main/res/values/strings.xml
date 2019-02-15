@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FirtsApp</string>
+    <string name="str_title">Componentes Principales</string>
+    <string name="btn1_txt">Hombre</string>
+    <string name="btn2_txt">Mujer</string>
+    <string name="hint_nombre">Escribe tu nombre...</string>
+</resources>
