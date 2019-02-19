@@ -3,5 +3,6 @@
     <string name="str_title">Componentes Principales</string>
     <string name="btn1_txt">Hombre</string>
     <string name="btn2_txt">Mujer</string>
-    <string name="hint_nombre">Escribe tu nombre...</string>
+    <string name="hint_nombre">Escribe tu nombre&#8230;</string>
+    <string name="rating_selected">La valoración cambió a %1$.2f</string>
 </resources>
