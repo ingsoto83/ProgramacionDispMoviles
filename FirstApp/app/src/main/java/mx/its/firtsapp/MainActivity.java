@@ -1,5 +1,6 @@
 package mx.its.firtsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private Button button1,button2;
     private ImageView logo;
     private SeekBar seek;
+    public static final String RATING = "rating";
+    public static final String NOMBRE = "nombre";
+    public static final String COLOR = "color";
+    public static final String POJO = "pojo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +71,22 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        Intent i = new Intent(getApplicationContext(),DataActivity.class);
+        Pojo p = new Pojo(rating.getRating(),0,txtNombre.getText().toString());
         if(v.getId()== R.id.button1){
-            Toast.makeText(getApplicationContext(),"Hiciste click en hombre",Toast.LENGTH_SHORT).show();
+            p.setColor(R.color.color_h);
         }
         if(v.getId()== R.id.button2){
-            Toast.makeText(getApplicationContext(),"Hiciste click en mujer",Toast.LENGTH_SHORT).show();
+            p.setColor(R.color.color_m);
         }
-        if(v.getId()== R.id.logo){
+        i.putExtra(POJO,p);
+
+        //Enviar extras individuales
+        //i.putExtra(RATING,currentRating);
+        //i.putExtra(NOMBRE,nombre);
+        //i.putExtra(COLOR,color);
+        startActivity(i);
+/*        if(v.getId()== R.id.logo){
             if(txtNombre.getText().toString().isEmpty()){
                 Toast.makeText(getApplicationContext(),
                         "Escribe tu nombre primero!",
@@ -82,7 +96,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         " Hola, "+txtNombre.getText().toString(),
                         Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
     }
 }
 

@@ -5,4 +5,5 @@
     <string name="btn2_txt">Mujer</string>
     <string name="hint_nombre">Escribe tu nombre&#8230;</string>
     <string name="rating_selected">La valoración cambió a %1$.2f</string>
+    <string name="title_activity_data">DataActivity</string>
 </resources>
