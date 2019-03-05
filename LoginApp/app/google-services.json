@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "633084205195",
+    "firebase_url": "https://pdm56-8a5ec.firebaseio.com",
+    "project_id": "pdm56-8a5ec",
+    "storage_bucket": "pdm56-8a5ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633084205195:android:b6f89246aae762f9",
+        "android_client_info": {
+          "package_name": "mx.its.loginapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633084205195-a2q9k455ksomj8u0g5ghfotl69udvqms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsG_vIDSksH-L1cjpyyHDXP71KYx2zh0Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
