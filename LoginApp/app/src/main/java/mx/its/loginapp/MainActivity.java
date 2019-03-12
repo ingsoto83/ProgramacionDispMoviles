@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String session;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
     TextView txtHello;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         txtHello = findViewById(R.id.txtHello);
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser()==null){
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        }else{
+            mUser = mAuth.getCurrentUser();
+        }
+
+
+
+
+        //**********************************Escribir Datos
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        //Escribir Datos
+
         // myRef.setValue("Hello, Firebase!");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -45,13 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        /*if(session==null){
-            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP|
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-        }*/
+
+        //**********************************Escribir Datos
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
