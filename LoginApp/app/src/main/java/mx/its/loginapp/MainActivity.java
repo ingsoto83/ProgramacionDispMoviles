@@ -34,11 +34,7 @@ public class MainActivity extends AppCompatActivity {
         txtHello = findViewById(R.id.txtHello);
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser()==null){
-            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP|
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
+            goToLogin();
         }else{
             mUser = mAuth.getCurrentUser();
         }
@@ -48,14 +44,16 @@ public class MainActivity extends AppCompatActivity {
 
         //**********************************Escribir Datos
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("usuarios").child(mUser.getUid()).child("nombre");
 
 
         // myRef.setValue("Hello, Firebase!");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txtHello.setText(dataSnapshot.getValue().toString());
+                if(dataSnapshot.exists()){
+                    txtHello.setText("Bienvenido " + dataSnapshot.getValue().toString());
+                }
             }
 
             @Override
@@ -76,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void goToLogin() {
+        Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|
+                Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -86,9 +92,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
+            mAuth.signOut();
+            goToLogin();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
