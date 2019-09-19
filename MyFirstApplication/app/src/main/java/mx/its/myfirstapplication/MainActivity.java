@@ -1,5 +1,6 @@
 package mx.its.myfirstapplication;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private SeekBar seekBar;
     private EditText edNombre;
     private RatingBar rating;
+    public static final String RATING = "rating";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,22 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         btnEnviar.setOnClickListener(listener);
         btnLimpiar.setOnClickListener(listener);
         imgLogo.setOnClickListener(listener);*/
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Toast.makeText(getApplicationContext(),"El valor es "+progress,Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
 
@@ -69,6 +86,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         String opcion="";
         switch (v.getId()){
             case R.id.btn_enviar:
+                Intent i = new Intent(MainActivity.this,SecondActivity.class);
+                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra(RATING,rating.getRating());
+                startActivity(i);
                 opcion = "Botón Enviar";
                 break;
             case R.id.btn_limpiar:

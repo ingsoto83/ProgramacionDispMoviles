@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -15,7 +16,8 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        float rating = getIntent().getFloatExtra(MainActivity.RATING,0f);
+        Toast.makeText(getApplicationContext(),"el rating que recibí fue: "+rating,Toast.LENGTH_SHORT).show();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
