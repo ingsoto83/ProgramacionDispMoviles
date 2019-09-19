@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_gravity="center"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/txt_calif"
+        android:textColor="@color/black_text" />
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:max="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/et_nombre"
+        android:inputType="textAutoComplete|textAutoCorrect"
+        android:hint="@string/txt_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/txt_opinion"
+        android:textColor="@color/black_text" />
+
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:numStars="5"
+        android:stepSize=".5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_limpiar"
+            android:text="@string/txt_limpiar"
+            android:textColor="@color/white_text"
+            android:background="@color/colorAccent"
+            android:layout_width="0dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            tools:ignore="ButtonStyle"/>
+        <Button
+            android:id="@+id/btn_enviar"
+            android:text="@string/txt_enviar"
+            android:textColor="@color/white_text"
+            android:background="@color/colorPrimary"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+</LinearLayout>
+

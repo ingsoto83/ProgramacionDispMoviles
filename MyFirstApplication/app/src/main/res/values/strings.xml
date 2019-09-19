@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MyFirstApplication</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="click_me">Click me</string>
+    <string name="txt_opinion">Danos tu opinión de clase</string>
+    <string name="txt_calif">Que calificación crees que saques?</string>
+    <string name="txt_nombre">Escribe tu nombre</string>
+    <string name="txt_limpiar">Limpiar</string>
+    <string name="txt_enviar">Enviar</string>
+    <string name="txt_click">Hiciste click en %s</string>
+</resources>
