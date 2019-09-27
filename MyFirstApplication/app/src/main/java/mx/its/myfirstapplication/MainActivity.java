@@ -13,13 +13,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import mx.its.myfirstapplication.data.Encuesta;
+
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
     private Button btnEnviar,btnLimpiar;
     private ImageView imgLogo;
     private SeekBar seekBar;
-    private EditText edNombre;
+    private EditText etNombre;
     private RatingBar rating;
-    public static final String RATING = "rating";
+    public static final String DATOS = "datos";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         imgLogo = findViewById(R.id.imgLogo);
         seekBar = findViewById(R.id.seekbar);
         rating = findViewById(R.id.rating);
+        etNombre = findViewById(R.id.et_nombre);
         /*
          * 1) Clase Anonima
          * 2) Implementando la interfaz
@@ -88,7 +91,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             case R.id.btn_enviar:
                 Intent i = new Intent(MainActivity.this,SecondActivity.class);
                 //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra(RATING,rating.getRating());
+                Encuesta e = new Encuesta(etNombre.getText().toString(),seekBar.getProgress(),rating.getRating());
+                i.putExtra(DATOS,e);
+
                 startActivity(i);
                 opcion = "Botón Enviar";
                 break;

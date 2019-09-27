@@ -8,16 +8,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import mx.its.myfirstapplication.data.Encuesta;
+
 public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        float rating = getIntent().getFloatExtra(MainActivity.RATING,0f);
-        Toast.makeText(getApplicationContext(),"el rating que recibí fue: "+rating,Toast.LENGTH_SHORT).show();
+        Encuesta e = (Encuesta) getIntent().getSerializableExtra(MainActivity.DATOS);
+        Toast.makeText(getApplicationContext(),"nombre: "+e.getNombre()+" calif: "+e.getCalificacion()+" rating: "+e.getRating(),Toast.LENGTH_SHORT).show();
+
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
