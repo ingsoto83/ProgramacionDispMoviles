@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "329275684686",
+    "firebase_url": "https://moviles-dc244.firebaseio.com",
+    "project_id": "moviles-dc244",
+    "storage_bucket": "moviles-dc244.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329275684686:android:ba86578319cacedb79101f",
+        "android_client_info": {
+          "package_name": "mx.its.appfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329275684686-5s7s5nvn07bqvf11s06url1npj8pq1ju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLpS3Fa28N1q0R_koGYUnTYXhaWu3QvUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329275684686-5s7s5nvn07bqvf11s06url1npj8pq1ju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
