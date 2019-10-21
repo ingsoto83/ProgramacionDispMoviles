@@ -16,7 +16,10 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import mx.its.appfirebase.Message;
+import mx.its.appfirebase.MessagesAdapter;
 import mx.its.appfirebase.R;
 
 import android.view.View;
@@ -26,13 +29,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
+    private RecyclerView recyclerView;
     private EditText etMessage;
     private FirebaseUser user;
-    private TextView username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         etMessage = findViewById(R.id.et_message);
-        username =  findViewById(R.id.username);
+        recyclerView =  findViewById(R.id.recycler);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference("messages");
@@ -49,20 +56,10 @@ public class MainActivity extends AppCompatActivity {
           goToLogin();
         }
         user = mAuth.getCurrentUser();
-        DatabaseReference usersRef = mDatabase.getReference("usuarios").child(user.getUid()).child("nombre");
-        //Toast.makeText(this,getString(R.string.welcome_text,mAuth.getCurrentUser().getEmail()),Toast.LENGTH_LONG).show();
-        usersRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String nombre = dataSnapshot.getValue(String.class);
-                username.setText(nombre);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        MessagesAdapter adapter = new MessagesAdapter(this,mReference,Message.class,new ArrayList<Message>(),new ArrayList<String>());
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(manager);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
