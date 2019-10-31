@@ -18,8 +18,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import mx.its.appfirebase.DetailActivity;
 import mx.its.appfirebase.Message;
 import mx.its.appfirebase.MessagesAdapter;
+import mx.its.appfirebase.MessagesListener;
 import mx.its.appfirebase.R;
 
 import android.view.View;
@@ -32,14 +34,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MessagesListener{
     FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private RecyclerView recyclerView;
     private EditText etMessage;
     private FirebaseUser user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
           goToLogin();
         }
         user = mAuth.getCurrentUser();
-        MessagesAdapter adapter = new MessagesAdapter(this,mReference,Message.class,new ArrayList<Message>(),new ArrayList<String>());
+        MessagesAdapter adapter = new MessagesAdapter(this,mReference,Message.class,new ArrayList<Message>(),new ArrayList<String>(),this);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(manager);
@@ -99,5 +100,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMessageLongClick(String key) {
+      mReference.child(key).setValue(null);
+    }
+
+    @Override
+    public void onMessageClick(Message message, String key) {
+        /*https://developer.android.com/training/sharing/send#java*/
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, message.getEmail()+" escribío: "+message.getMessage());
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+        //Toast.makeText(getApplicationContext(),message.getMessage(),Toast.LENGTH_SHORT).show();
     }
 }
